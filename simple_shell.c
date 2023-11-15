@@ -49,10 +49,11 @@ int execute_command(char *command)
  *
  * Return: The user's command as a string, or NULL on failure.
  */
-char *read_command(void)
+char *read_command()
 {
 	size_t bufsize = 1024;
 	char *buffer = malloc(bufsize);
+	ssize_t characters_read;
 
 	if (buffer == NULL)
 	{
@@ -60,7 +61,7 @@ char *read_command(void)
 		return (NULL);
 	}
 
-	ssize_t characters_read = getline(&buffer, &bufsize, stdin);
+	characters_read = getline(&buffer, &bufsize, stdin);
 
 	if (characters_read == -1)
 	{
